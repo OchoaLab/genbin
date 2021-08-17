@@ -53,7 +53,7 @@ data <- plink_glm( name, name_out = name_out )
 \seealso{
 \code{\link[=read_plink_glm]{read_plink_glm()}} for parsing the output of \code{plink2 --glm}.
 
-\code{\link[=delete_files_plink_glm]{delete_files_plink_glm()}} for deleting the output of \code{plink2 --glm}.
+\code{\link[=delete_files_plink_glm]{delete_files_plink_glm()}}, \code{\link[=delete_files_log]{delete_files_log()}} for deleting the output of \code{plink2 --glm}.
 
 \code{\link[=system3]{system3()}}, used (with \code{ret = FALSE}) for executing \code{plink2} and error handling.
 }

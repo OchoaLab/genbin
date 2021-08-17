@@ -36,9 +36,11 @@ The values 0 (default), NA, or NULL use all threads available (the output of \co
 }
 \value{
 The table of genetic association statistics, as a \code{tibble}, read with \code{\link[=read_gcta_mlma]{read_gcta_mlma()}} (see that for more info).
+Certain errors in the binary (see above) cause \code{NULL} to be returned.
 }
 \description{
 A wrapper for running GCTA genetic association test followed by reading of the results by \code{\link[=read_gcta_mlma]{read_gcta_mlma()}}.
+If GCTA returns with a non-zero status, the wrapper inspects STDOUT/STDERR and the log file for messages about non-invertible matrices or convergence failures (cases encountered often when an excessive number of covariates is provided), and returns \code{NULL} for those cases without errors or warnings in R (all other failures make the wrapper stop with an error).
 }
 \examples{
 \dontrun{

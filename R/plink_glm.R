@@ -37,7 +37,7 @@
 #' @seealso
 #' [read_plink_glm()] for parsing the output of `plink2 --glm`.
 #'
-#' [delete_files_plink_glm()] for deleting the output of `plink2 --glm`.
+#' [delete_files_plink_glm()], [delete_files_log()] for deleting the output of `plink2 --glm`.
 #'
 #' [system3()], used (with `ret = FALSE`) for executing `plink2` and error handling.
 #' 

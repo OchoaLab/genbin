@@ -12,6 +12,7 @@
 #' Run GCTA MLMA and returns table of association statistics.
 #'
 #' A wrapper for running GCTA genetic association test followed by reading of the results by [read_gcta_mlma()].
+#' If GCTA returns with a non-zero status, the wrapper inspects STDOUT/STDERR and the log file for messages about non-invertible matrices or convergence failures (cases encountered often when an excessive number of covariates is provided), and returns `NULL` for those cases without errors or warnings in R (all other failures make the wrapper stop with an error).
 #'
 #' @param name The shared name of the input plink BED/BIM/FAM files without extensions.
 #' @param name_grm The shared name of the input binary GRM files without extensions (default same as input `name`).
@@ -25,6 +26,7 @@
 #' @param verbose If `TRUE` (default), prints the command line before it is executed, followed by the the path of the output file being read (after autocompleting the extensions).
 #'
 #' @return The table of genetic association statistics, as a `tibble`, read with [read_gcta_mlma()] (see that for more info).
+#' Certain errors in the binary (see above) cause `NULL` to be returned.
 #'
 #' @examples 
 #' \dontrun{

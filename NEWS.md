@@ -10,3 +10,8 @@
 - Documented and exported all main functions!
 - Package passes checks!
 
+# genbin 0.0.2.9000 (2021-08-17)
+
+- Added package documentation page and `README.md` with sample pipelines for GCTA and plink PCA.
+- Function `gcta_mlma` expanded documentation to explain which errors cause function to return `NULL` instead of stopping.
+- Function `plink_glm` expanded documentation to include `delete_files_log` under `seealso` section.
