@@ -6,6 +6,37 @@
 # - removed `cleanup` option (now we must apply cleanup outside!)
 # - returned list(runtime), new doesn't!
 
+#' Run GEMMA and returns table of association statistics.
+#'
+#' A wrapper for running GEMMA genetic association test followed by reading of the results by [read_gemma_assoc()].
+#'
+#' @param name The shared name of the input plink BED/BIM/FAM files without extensions.
+#' Phenotype from FAM table is used.
+#' @param file_kinship The path to the kinship matrix file.
+#' @param name_out The base name of the output statistics file (default same as input `name`), which gets extension ".assoc.txt" added automatically.
+#' @param gemma_bin The path to the binary executable.
+#' Default assumes `gemma` is in the PATH.
+#' @param threads The number of threads to use.
+#' The values 0 (default), NA, or NULL use all threads available (the output of [parallel::detectCores()]).
+#' @param verbose If `TRUE` (default), prints the command line before it is executed.
+#'
+#' @return The table of genetic association statistics, as a `tibble`, read with [read_gemma_assoc()] (see that for more info).
+#'
+#' @examples 
+#' \dontrun{
+#' data <- gemma_lmm( name, file_kinship, name_out )
+#' }
+#' 
+#' @seealso
+#' [gemma_kin()] for estimating the kinship matrix with GEMMA.
+#' 
+#' [read_gemma_assoc()] for parsing the output of GEMMA.
+#'
+#' [delete_files_assoc()] and [delete_files_logtxt()] for deleting the GEMMA output files.
+#'
+#' [system3()], used (with `ret = FALSE`) for executing GEMMA and error handling.
+#' 
+#' @export
 gemma_lmm <- function(
                       name,
                       file_kinship,

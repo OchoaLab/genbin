@@ -1,6 +1,3 @@
-# wrapper around BOLT to behave like other tests
-# NOTE: requires plink files to have been made first!
-
 # orig: gas_lmm_bolt
 # - bolt_bin was required, now defaults to bolt on path
 # - param `threads = 1`, new is 0
@@ -9,8 +6,34 @@
 # - other output used to be name_out.bolt.stats.txt, now it's name_out.bolt.txt
 # - removed option `m_loci` (for validations)
 
-# since the goal is benchmarking, threads = 1 is used to have a good time comparison
-# phen will be always passed through FAM here, for simplicity
+#' Run BOLT-LMM `--lmm` and returns table of association statistics.
+#'
+#' A wrapper for running BOLT-LMM's genetic association test followed by reading of the results by [read_bolt_lmm()].
+#' In addition to the arguments listed below, the executable is run with `--phenoUseFam` (so the phenotype tested can only be the one present in the input FAM file), `--LDscoresUseChip`, `--lmmForceNonInf` (so columns are never missing), and `--maxMissingPerSnp 1 --maxMissingPerIndiv 1` (so full data is used and loci are never missing from table).
+#' 
+#' @param name The shared name of the input plink BED/BIM/FAM files without extensions (the argument to `--bfile`).
+#' @param name_out The base name of the output statistics file (the argument to `--statsFile`; default same as input `name`), which gets extension ".bolt.lmm" added automatically.
+#' @param bolt_bin The path to the binary executable.
+#' Default assumes `bolt` is in the PATH.
+#' @param threads The number of threads to use (the argument to `--numThreads`).
+#' The values 0 (default), NA, or NULL use all threads available (the output of [parallel::detectCores()]).
+#' @param verbose If `TRUE` (default), prints the command line before it is executed, followed by the the path of the output file being read (after autocompleting the extensions).
+#'
+#' @return The table of genetic association statistics, as a `tibble`, read with [read_bolt_lmm()] (see that for more info).
+#'
+#' @examples 
+#' \dontrun{
+#' data <- bolt_lmm( name, name_out )
+#' }
+#' 
+#' @seealso
+#' [read_bolt_lmm()] for parsing the output of BOLT-LMM.
+#'
+#' [delete_files_bolt()] for deleting the output of BOLT-LMM.
+#'
+#' [system3()], used (with `ret = FALSE`) for executing BOLT-LMM and error handling.
+#' 
+#' @export
 bolt_lmm <- function(
                      name,
                      name_out = name,

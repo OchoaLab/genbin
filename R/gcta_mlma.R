@@ -9,6 +9,38 @@
 #   - pvals -> p
 #   - beta_hat -> beta
 
+#' Run GCTA MLMA and returns table of association statistics.
+#'
+#' A wrapper for running GCTA genetic association test followed by reading of the results by [read_gcta_mlma()].
+#'
+#' @param name The shared name of the input plink BED/BIM/FAM files without extensions.
+#' @param name_grm The shared name of the input binary GRM files without extensions (default same as input `name`).
+#' @param name_phen The base name of the phenotype file without PHEN extension (default same as input `name`).
+#' @param name_out The base name of the output statistics file (default same as input `name`), which gets extension ".mlma" added automatically.
+#' @param file_covar Optional file path of fixed covariates.
+#' @param gcta_bin The path to the binary executable.
+#' Default assumes `gcta64` is in the PATH.
+#' @param threads The number of threads to use.
+#' The values 0 (default), NA, or NULL use all threads available (the output of [parallel::detectCores()]).
+#' @param verbose If `TRUE` (default), prints the command line before it is executed, followed by the the path of the output file being read (after autocompleting the extensions).
+#'
+#' @return The table of genetic association statistics, as a `tibble`, read with [read_gcta_mlma()] (see that for more info).
+#'
+#' @examples 
+#' \dontrun{
+#' data <- gcta_mlma( name, name_out )
+#' }
+#' 
+#' @seealso
+#' [gcta_grm()] for estimating the kinship (GRM) matrix with GCTA.
+#' 
+#' [read_gcta_mlma()] for parsing the output of GCTA MLMA.
+#'
+#' [delete_files_gcta_mlma()] and [delete_files_log()] for deleting the GCTA output files.
+#'
+#' [system3()], used (with `ret = FALSE`) for executing GCTA and error handling.
+#' 
+#' @export
 gcta_mlma <- function(
                      name,
                      name_grm = name,
@@ -76,7 +108,7 @@ gcta_mlma <- function(
             # check log file (painful but meh)
             file_gcta_log <- paste0( name_out, '.log' )
             # the log better be there! (could cause its own error)
-            lines_log <- read_lines( file_gcta_log )
+            lines_log <- readr::read_lines( file_gcta_log )
             # get last line only
             last_line_log <- lines_log[ length(lines_log) ]
             # continue if V(G) or V(e) were NaN (nan in particular)

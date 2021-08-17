@@ -3,7 +3,38 @@
 # - param `threads = 1`, new is 0
 # - returned list(runtime), new doesn't!
 
-# since the goal is benchmarking, threads = 1 is used to have a good time comparison
+#' Run GCTA REML and return the estimated heritability.
+#'
+#' A wrapper for running GCTA variance component estimation followed by reading of the results by [read_gcta_hsq()].
+#'
+#' @param name The shared default name of the input and output files without extensions.
+#' @param name_grm The shared name of the input binary GRM files without extensions (default same as input `name`).
+#' @param name_phen The base name of the phenotype file without PHEN extension (default same as input `name`).
+#' @param name_out The base name of the output variance component file (default same as input `name`), which gets extension ".hsq" added automatically.
+#' @param gcta_bin The path to the binary executable.
+#' Default assumes `gcta64` is in the PATH.
+#' @param threads The number of threads to use.
+#' The values 0 (default), NA, or NULL use all threads available (the output of [parallel::detectCores()]).
+#' @param verbose If `TRUE` (default), prints the command line before it is executed, followed by the the path of the output file being read (after autocompleting the extensions).
+#'
+#' @return A list containing the estimated heritability, its standard error, and the full table of estimated variance components, as a `tibble`, read with [read_gcta_hsq()] (see that for more info).
+#'
+#' @examples 
+#' \dontrun{
+#' obj <- gcta_reml( name, name_out )
+#' obj$herit
+#' }
+#' 
+#' @seealso
+#' [gcta_grm()] for estimating the kinship (GRM) matrix with GCTA.
+#' 
+#' [read_gcta_hsq()] for parsing the output of GCTA MLMA.
+#'
+#' [delete_files_gcta_hsq()] and [delete_files_log()] for deleting the GCTA output files.
+#'
+#' [system3()], used (with `ret = FALSE`) for executing GCTA and error handling.
+#' 
+#' @export
 gcta_reml <- function(
                       name,
                       name_grm = name,

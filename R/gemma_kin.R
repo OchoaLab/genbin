@@ -4,7 +4,40 @@
 # - removed `debug` option
 # - returned list(runtime, file), new doesn't!
 
-# this step creates kinship matrix only
+#' Estimate kinship with GEMMA
+#'
+#' Uses `gemma` with `-gk` and default option to estimate the kinship matrix.
+#' The output file will be named `name_out`.cXX.txt using the output name below.
+#'
+#' @param name The shared name of the input plink BED/BIM/FAM files without extensions.
+#' @param name_out The base name of the output kinship file (default same as input `name`), which gets extension ".cXX.txt" added automatically.
+#' @param gemma_bin The path to the binary executable.
+#' Default assumes `gemma` is in the PATH.
+#' @param threads The number of threads to use.
+#' The values 0 (default), NA, or NULL use all threads available (the output of [parallel::detectCores()]).
+#' @param verbose If `TRUE` (default), prints the command line before it is executed.
+#'
+#' @return Nothing (the kinship matrix is not read in; see example below for reading with a different function).
+#'
+#' @examples 
+#' \dontrun{
+#' # create kinship matrix estimate (on file)
+#' gemma_kin( name )
+#'
+#' # read file with genio
+#' kinship <- genio::read_matrix( name, ext = 'cXX.txt' )
+#' }
+#' 
+#' @seealso
+#' [genio::read_matrix()] for reading plain-text matrices.
+#' 
+#' [gemma_lmm()] for running GWAS with GEMMA.
+#' 
+#' [delete_files_logtxt()] for deleting the GEMMA log file.
+#' 
+#' [system3()], used (with `ret = FALSE`) for executing GEMMA and error handling.
+#' 
+#' @export
 gemma_kin <- function(
                       name,
                       name_out = name,

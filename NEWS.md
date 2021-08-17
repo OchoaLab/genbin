@@ -5,3 +5,8 @@
   - New code shares the way errors are handled across all cases; style is more coherent, including option names, behaviors, parsers, etc.
 - This early version is thoroughly tested, but not documented at all.  No functions are exported.
 
+# genbin 0.0.1.9000 (2021-08-16)
+
+- Documented and exported all main functions!
+- Package passes checks!
+
