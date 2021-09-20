@@ -76,6 +76,14 @@ delete_files_log( name )
 }
 
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/OchoaLab/genbin}
+  \item Report bugs at \url{https://github.com/OchoaLab/genbin/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Alejandro Ochoa \email{alejandro.ochoa@duke.edu} (\href{https://orcid.org/0000-0003-4928-3403}{ORCID})
 

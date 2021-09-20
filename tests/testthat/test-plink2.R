@@ -87,7 +87,22 @@ if ( Sys.which( 'plink2' ) != '' ) {
         )
         # generic association data checker
         check_assoc_data( data )
-        
+
+        # repeat again with a non-default maximum VIF
+        # repeat with PCs, using files that should still be there
+        # now the association
+        expect_silent(
+            data <- plink_glm(
+                name,
+                name_out = name_out,
+                file_covar = paste0( name_out, '.eigenvec' ),
+                vif = 100,
+                verbose = FALSE
+            )
+        )
+        # generic association data checker
+        check_assoc_data( data )
+
         # cleanup
         # also tests this other function
         expect_silent(

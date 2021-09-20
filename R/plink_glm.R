@@ -19,6 +19,10 @@
 #' @param name_out The base name of the output statistics file (default same as input `name`), which gets extension ".PHENO1.glm.linear" added automatically.
 #' @param file_covar Optional file path of fixed covariates for GLM.
 #' Pass the EIGENVEC file (with extension) to control for population structure using principal components.
+#' @param vif Maximum variance inflation factor (VIF).
+#' Plink applies a value of 50 by default to check for multicollinearity of the covariates, stopping with an error if any covariates have a VIF exceeding the maximum allowed.
+#' Here, `NA` leaves the default value; pass a non-`NA` value to alter maximum.
+#' Ignored unless `file_covar` is non-`NULL`.
 #' @param plink_bin The path to the binary executable.
 #' Default assumes `plink2` is in the PATH.
 #' @param threads The number of threads to use.
@@ -47,6 +51,7 @@ plink_glm <- function(
                       name_phen = name,
                       name_out = name,
                       file_covar = NULL,
+                      vif = NA,
                       plink_bin = 'plink2',
                       threads = 0,
                       ver_older = FALSE,
@@ -94,6 +99,9 @@ plink_glm <- function(
             args <- c( args, 'allow-no-covars' )
     } else {
         args <- c( args, '--covar', file_covar )
+        # VIF matters here
+        if ( !is.na( vif ) )
+            args <- c( args, '--vif', vif )
     }
     
     # actual run
