@@ -9,6 +9,7 @@ plink_glm(
   name_phen = name,
   name_out = name,
   file_covar = NULL,
+  vif = NA,
   plink_bin = "plink2",
   threads = 0,
   ver_older = FALSE,
@@ -25,6 +26,11 @@ Only the first phenotype (column 3) is used.}
 
 \item{file_covar}{Optional file path of fixed covariates for GLM.
 Pass the EIGENVEC file (with extension) to control for population structure using principal components.}
+
+\item{vif}{Maximum variance inflation factor (VIF).
+Plink applies a value of 50 by default to check for multicollinearity of the covariates, stopping with an error if any covariates have a VIF exceeding the maximum allowed.
+Here, \code{NA} leaves the default value; pass a non-\code{NA} value to alter maximum.
+Ignored unless \code{file_covar} is non-\code{NULL}.}
 
 \item{plink_bin}{The path to the binary executable.
 Default assumes \code{plink2} is in the PATH.}
