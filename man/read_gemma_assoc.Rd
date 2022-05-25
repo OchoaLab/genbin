@@ -21,8 +21,8 @@ Original names (as they appear in the header line of the file) are modified by t
 \itemize{
 \item "rs" -> "id"
 \item "ps" -> "pos"
-\item "allele1" -> "ref"
-\item "allele0" -> "alt"
+\item "allele1" -> "alt"
+\item "allele0" -> "ref"
 \item "p_wald" -> "p"
 }
 }

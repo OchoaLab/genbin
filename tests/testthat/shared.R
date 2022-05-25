@@ -19,7 +19,7 @@ check_assoc_data <- function( data, emmax = FALSE ) {
     
     # compare to bim columns (note `posg` is not in any of the output)
     # emmax only outputs `id`!
-    col_names <- if ( emmax ) 'id' else c('chr', 'id', 'pos', 'ref', 'alt')
+    col_names <- if ( emmax ) 'id' else c('chr', 'id', 'pos', 'alt', 'ref')
     for ( col_name in col_names ) {
         expect_equal( data[[ col_name ]], bim[[ col_name ]] )
     }

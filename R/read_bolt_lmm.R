@@ -15,8 +15,8 @@
 #' - "snp" -> "id"
 #' - "bp" -> "pos"
 #' - "genpos" -> "posg"
-#' - "allele1" -> "ref"
-#' - "allele0" -> "alt"
+#' - "allele1" -> "alt"
+#' - "allele0" -> "ref"
 #' - "p_bolt_lmm_inf" -> "p_inf"
 #' - "p_bolt_lmm" -> "p"
 #'
@@ -53,8 +53,8 @@ read_bolt_lmm <- function( file, ext = 'bolt.txt', verbose = TRUE ) {
     names( data )[ names( data ) == 'snp' ] <- 'id'
     names( data )[ names( data ) == 'bp' ] <- 'pos'
     names( data )[ names( data ) == 'genpos' ] <- 'posg'
-    names( data )[ names( data ) == 'allele1' ] <- 'ref'
-    names( data )[ names( data ) == 'allele0' ] <- 'alt'
+    names( data )[ names( data ) == 'allele1' ] <- 'alt'
+    names( data )[ names( data ) == 'allele0' ] <- 'ref'
     names( data )[ names( data ) == 'p_bolt_lmm_inf' ] <- 'p_inf'
     names( data )[ names( data ) == 'p_bolt_lmm' ] <- 'p' # this is the best/main p-value
     

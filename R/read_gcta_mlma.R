@@ -14,8 +14,8 @@
 #' Original names (as they appear in the header line of the file) are modified by lowercasing all, followed by these specific mappings to ensure that columns shared by BIM table have the same names as those returned by [genio::read_bim()], the association p-value is "p", and the regression coefficient is "beta" ("orig" -> "new"):
 #' - "snp" -> "id"
 #' - "bp" -> "pos"
-#' - "a1" -> "ref"
-#' - "a2" -> "alt"
+#' - "a1" -> "alt"
+#' - "a2" -> "ref"
 #' - "b" -> "beta"
 #'
 #' @examples 
@@ -50,8 +50,8 @@ read_gcta_mlma <- function( file, ext = 'mlma', verbose = TRUE ) {
     # other things to rename
     names( data )[ names( data ) == 'snp' ] <- 'id'
     names( data )[ names( data ) == 'bp' ] <- 'pos'
-    names( data )[ names( data ) == 'a1' ] <- 'ref'
-    names( data )[ names( data ) == 'a2' ] <- 'alt'
+    names( data )[ names( data ) == 'a1' ] <- 'alt'
+    names( data )[ names( data ) == 'a2' ] <- 'ref'
     names( data )[ names( data ) == 'b' ] <- 'beta'
     
     # return tibble

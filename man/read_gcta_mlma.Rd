@@ -21,8 +21,8 @@ Original names (as they appear in the header line of the file) are modified by l
 \itemize{
 \item "snp" -> "id"
 \item "bp" -> "pos"
-\item "a1" -> "ref"
-\item "a2" -> "alt"
+\item "a1" -> "alt"
+\item "a2" -> "ref"
 \item "b" -> "beta"
 }
 }

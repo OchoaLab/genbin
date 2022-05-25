@@ -28,6 +28,9 @@ test_that( "read_gcta_hsq works", {
     expect_true( is.numeric( obj$se ) )
     expect_equal( length( obj$se ), 1 )
     expect_true( is.data.frame( obj$data ) )
+    # compare to manually parsed values
+    expect_equal( obj$herit, 0.305949 )
+    expect_equal( obj$se, 0.344865 )
 })
 
 # use binary in path

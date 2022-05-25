@@ -38,17 +38,16 @@ read_gcta_hsq <- function( file, ext = 'hsq', verbose = TRUE ) {
 
     # read table!
     # unfortunately an irregular table
-    # this always complains beause last few rows only have 2 columns
-    # warning is deferred until first access to data below
+    # this always complains because last few rows only have 2 columns
+    # issue avoided by only reading complete rows (will not read trailing data at all, we don't need it anyway)
     data <- readr::read_tsv(
                        file,
-                       col_types = 'cdd'
+                       col_types = 'cdd',
+                       n_max = 4 # not including header
                    )
     # find herit estimate
     # row of interest
-    suppressWarnings( # here happens the warning we want to supress!
-        index <- data$Source == 'V(G)/Vp'
-    )
+    index <- data$Source == 'V(G)/Vp'
     # heritability point estimate
     herit <- data$Variance[ index ]
     # standard error from MVN model

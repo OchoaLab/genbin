@@ -15,8 +15,6 @@
 #' @return The table as a `tibble`.
 #' Original names (as they appear in the header line of the file) are modified by lowercasing all, followed by these specific mappings to ensure that columns shared by BIM table have the same names as those returned by [genio::read_bim()], the association p-value is "p", and the regression coefficient is "beta" ("orig" -> "new"):
 #' - "#chrom" -> "chr"
-#' - "alt" -> "ref" (yes, these are switched!)
-#' - "ref" -> "alt"
 #'
 #' @examples 
 #' \dontrun{
@@ -49,9 +47,6 @@ read_plink_glm <- function( file, pheno = 'PHENO1', ext = 'glm.linear', verbose 
     names( data ) <- tolower( names( data ) )
     # extra transforms
     names( data )[ names( data ) == '#chrom' ] <- 'chr'
-    # ref/alt are switched, why!!!  (who is wrong here?)
-    # (compared to `genio::read_bim`)
-    data[ , c('ref', 'alt') ] <- data[ , c('alt', 'ref') ]
     
     # return tibble
     return( data )

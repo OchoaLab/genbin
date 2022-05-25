@@ -23,8 +23,6 @@ The table as a \code{tibble}.
 Original names (as they appear in the header line of the file) are modified by lowercasing all, followed by these specific mappings to ensure that columns shared by BIM table have the same names as those returned by \code{\link[genio:read_bim]{genio::read_bim()}}, the association p-value is "p", and the regression coefficient is "beta" ("orig" -> "new"):
 \itemize{
 \item "#chrom" -> "chr"
-\item "alt" -> "ref" (yes, these are switched!)
-\item "ref" -> "alt"
 }
 }
 \description{

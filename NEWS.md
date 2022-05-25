@@ -22,3 +22,11 @@
 - `DESCRIPTION` added github links (URL, BugReports).
 - `README.md` cleaned install instructions
 
+# genbin 0.0.4.9000 (2022-05-25)
+
+- Reversed `ref` and `alt` alleles in all association test parser functions
+  - In line with the same change in `genio::read_bim`.
+  - Original interpretation of ref and alt was wrong, it has now been corrected.
+  - Functions affected: `read_bolt_lmm`, `read_gcta_mlma`, `read_gemma_assoc`, `read_plink_glm`, and their downstream dependencies `bolt_lmm`, `gcta_mlma`, `gemma_lmm`, `plink_glm`.
+- Function `read_gcta_hsq` and its dependency `gcta_reml` debugged
+  - Fixed parser warning by limiting the number of lines to read to the first 4 (excluding header), so now the `$data` component of its return list will be more limited.

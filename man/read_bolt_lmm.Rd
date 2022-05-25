@@ -22,8 +22,8 @@ Original names (as they appear in the header line of the file) are modified by l
 \item "snp" -> "id"
 \item "bp" -> "pos"
 \item "genpos" -> "posg"
-\item "allele1" -> "ref"
-\item "allele0" -> "alt"
+\item "allele1" -> "alt"
+\item "allele0" -> "ref"
 \item "p_bolt_lmm_inf" -> "p_inf"
 \item "p_bolt_lmm" -> "p"
 }

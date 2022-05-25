@@ -14,8 +14,8 @@
 #' Original names (as they appear in the header line of the file) are modified by these specific mappings to ensure that columns shared by BIM table have the same names as those returned by [genio::read_bim()], the association p-value is "p", and the regression coefficient is "beta" ("orig" -> "new"):
 #' - "rs" -> "id"
 #' - "ps" -> "pos"
-#' - "allele1" -> "ref"
-#' - "allele0" -> "alt"
+#' - "allele1" -> "alt"
+#' - "allele0" -> "ref"
 #' - "p_wald" -> "p"
 #'
 #' @examples 
@@ -47,8 +47,8 @@ read_gemma_assoc <- function( file, ext = 'assoc.txt', verbose = TRUE ) {
     # normalize column names
     names( data )[ names( data ) == 'rs' ] <- 'id'
     names( data )[ names( data ) == 'ps' ] <- 'pos'
-    names( data )[ names( data ) == 'allele1' ] <- 'ref'
-    names( data )[ names( data ) == 'allele0' ] <- 'alt'
+    names( data )[ names( data ) == 'allele1' ] <- 'alt'
+    names( data )[ names( data ) == 'allele0' ] <- 'ref'
     names( data )[ names( data ) == 'p_wald' ] <- 'p'
     
     # return tibble
