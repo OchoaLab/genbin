@@ -10,6 +10,7 @@ plink_glm(
   name_out = name,
   file_covar = NULL,
   vif = NA,
+  max_corr = NA,
   plink_bin = "plink2",
   threads = 0,
   ver_older = FALSE,
@@ -29,6 +30,11 @@ Pass the EIGENVEC file (with extension) to control for population structure usin
 
 \item{vif}{Maximum variance inflation factor (VIF).
 Plink applies a value of 50 by default to check for multicollinearity of the covariates, stopping with an error if any covariates have a VIF exceeding the maximum allowed.
+Here, \code{NA} leaves the default value; pass a non-\code{NA} value to alter maximum.
+Ignored unless \code{file_covar} is non-\code{NULL}.}
+
+\item{max_corr}{Maximum covariate correlation.
+Plink applies a value of 0.999 by default to check for multicollinearity of the covariates, stopping with an error if any covariates have a correlation exceeding the maximum allowed.
 Here, \code{NA} leaves the default value; pass a non-\code{NA} value to alter maximum.
 Ignored unless \code{file_covar} is non-\code{NULL}.}
 

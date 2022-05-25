@@ -23,6 +23,10 @@
 #' Plink applies a value of 50 by default to check for multicollinearity of the covariates, stopping with an error if any covariates have a VIF exceeding the maximum allowed.
 #' Here, `NA` leaves the default value; pass a non-`NA` value to alter maximum.
 #' Ignored unless `file_covar` is non-`NULL`.
+#' @param max_corr Maximum covariate correlation.
+#' Plink applies a value of 0.999 by default to check for multicollinearity of the covariates, stopping with an error if any covariates have a correlation exceeding the maximum allowed.
+#' Here, `NA` leaves the default value; pass a non-`NA` value to alter maximum.
+#' Ignored unless `file_covar` is non-`NULL`.
 #' @param plink_bin The path to the binary executable.
 #' Default assumes `plink2` is in the PATH.
 #' @param threads The number of threads to use.
@@ -52,6 +56,7 @@ plink_glm <- function(
                       name_out = name,
                       file_covar = NULL,
                       vif = NA,
+                      max_corr = NA,
                       plink_bin = 'plink2',
                       threads = 0,
                       ver_older = FALSE,
@@ -99,9 +104,11 @@ plink_glm <- function(
             args <- c( args, 'allow-no-covars' )
     } else {
         args <- c( args, '--covar', file_covar )
-        # VIF matters here
+        # VIF and max_corr matter here
         if ( !is.na( vif ) )
             args <- c( args, '--vif', vif )
+        if ( !is.na( max_corr ) )
+            args <- c( args, '--max-corr', max_corr )
     }
     
     # actual run

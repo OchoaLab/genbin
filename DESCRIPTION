@@ -1,6 +1,6 @@
 Package: genbin
 Title: R wrappers for binaries in genetics
-Version: 0.0.4.9000
+Version: 0.0.5.9000
 Authors@R: 
     person(given = "Alejandro",
 	   family = "Ochoa",

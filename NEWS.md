@@ -30,3 +30,7 @@
   - Functions affected: `read_bolt_lmm`, `read_gcta_mlma`, `read_gemma_assoc`, `read_plink_glm`, and their downstream dependencies `bolt_lmm`, `gcta_mlma`, `gemma_lmm`, `plink_glm`.
 - Function `read_gcta_hsq` and its dependency `gcta_reml` debugged
   - Fixed parser warning by limiting the number of lines to read to the first 4 (excluding header), so now the `$data` component of its return list will be more limited.
+
+# genbin 0.0.5.9000 (2022-05-25)
+
+- Function `plink_glm` added option `max_corr`.
