@@ -34,3 +34,8 @@
 # genbin 0.0.5.9000 (2022-05-25)
 
 - Function `plink_glm` added option `max_corr`.
+
+# genbin 0.0.6.9000 (2022-12-07)
+
+- Function `gcta_mlma` added option `file_covar_cat`.
+- Removed `LazyData: true` from `DESCRIPTION`

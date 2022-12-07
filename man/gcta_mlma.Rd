@@ -10,6 +10,7 @@ gcta_mlma(
   name_phen = name,
   name_out = name,
   file_covar = NULL,
+  file_covar_cat = NULL,
   gcta_bin = "gcta64",
   threads = 0,
   verbose = TRUE
@@ -24,7 +25,9 @@ gcta_mlma(
 
 \item{name_out}{The base name of the output statistics file (default same as input \code{name}), which gets extension ".mlma" added automatically.}
 
-\item{file_covar}{Optional file path of fixed covariates.}
+\item{file_covar}{Optional file path of fixed continuous covariates.}
+
+\item{file_covar_cat}{Optional file path of fixed categorical covariates.}
 
 \item{gcta_bin}{The path to the binary executable.
 Default assumes \code{gcta64} is in the PATH.}
@@ -56,4 +59,7 @@ data <- gcta_mlma( name, name_out )
 \code{\link[=delete_files_gcta_mlma]{delete_files_gcta_mlma()}} and \code{\link[=delete_files_log]{delete_files_log()}} for deleting the GCTA output files.
 
 \code{\link[=system3]{system3()}}, used (with \code{ret = FALSE}) for executing GCTA and error handling.
+
+Input formats for continuous (\code{--qcovar}) and categorical (\code{--covar}) covariate files:
+\url{https://yanglab.westlake.edu.cn/software/gcta/#GREMLanalysis}
 }

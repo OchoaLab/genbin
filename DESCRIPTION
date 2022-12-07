@@ -1,6 +1,6 @@
 Package: genbin
 Title: R wrappers for binaries in genetics
-Version: 0.0.5.9000
+Version: 0.0.6.9000
 Authors@R: 
     person(given = "Alejandro",
 	   family = "Ochoa",
@@ -10,9 +10,8 @@ Authors@R:
 Description: Provides well-tested wrappers for narrow functions of several binary packages, including plink1 and plink2 (limited capabilities), gcta, bolt, gemma, and emmax.  Focuses on approaches for genetic association, population structure (kinship/GRM matrices and PCA), and heritability estimation.  Outputs are omitted unless there are errors (for easier debugging).  Parsers for the various output tables are also provided.  Complements the `genio` package (which focuses on parsing and not on binary wrappers).
 License: GPL (>= 3)
 Encoding: UTF-8
-LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.2
 Imports:
     readr,
     genio,

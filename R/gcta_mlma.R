@@ -18,7 +18,8 @@
 #' @param name_grm The shared name of the input binary GRM files without extensions (default same as input `name`).
 #' @param name_phen The base name of the phenotype file without PHEN extension (default same as input `name`).
 #' @param name_out The base name of the output statistics file (default same as input `name`), which gets extension ".mlma" added automatically.
-#' @param file_covar Optional file path of fixed covariates.
+#' @param file_covar Optional file path of fixed continuous covariates.
+#' @param file_covar_cat Optional file path of fixed categorical covariates.
 #' @param gcta_bin The path to the binary executable.
 #' Default assumes `gcta64` is in the PATH.
 #' @param threads The number of threads to use.
@@ -41,6 +42,9 @@
 #' [delete_files_gcta_mlma()] and [delete_files_log()] for deleting the GCTA output files.
 #'
 #' [system3()], used (with `ret = FALSE`) for executing GCTA and error handling.
+#'
+#' Input formats for continuous (`--qcovar`) and categorical (`--covar`) covariate files:
+#' <https://yanglab.westlake.edu.cn/software/gcta/#GREMLanalysis>
 #' 
 #' @export
 gcta_mlma <- function(
@@ -49,6 +53,7 @@ gcta_mlma <- function(
                      name_phen = name,
                      name_out = name,
                      file_covar = NULL,
+                     file_covar_cat = NULL,
                      gcta_bin = 'gcta64',
                      threads = 0,
                      verbose = TRUE
@@ -84,6 +89,8 @@ gcta_mlma <- function(
 
     if ( !is.null( file_covar ) )
         args <- c( args, '--qcovar', file_covar )
+    if ( !is.null( file_covar_cat ) )
+        args <- c( args, '--covar', file_covar_cat )
     
     # actual run
     out <- system3( gcta_bin, args, verbose, ret = TRUE )
