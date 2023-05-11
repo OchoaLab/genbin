@@ -28,6 +28,11 @@ plink2 --bfile $name --pheno $name.phen --pheno-col-nums 3 --out $name --glm omi
 # cleanup
 rm $name.log
 
+# create hardy output for parsing test
+plink2 --bfile $name --hardy --nonfounders --out $name
+# cleanup
+rm $name.log
+
 # create GCTA outputs (grm, mlma, hsq) for parsing tests
 gcta64 --bfile $name --make-grm --out $name
 gcta64 --mlma --bfile $name --grm $name --pheno $name.phen --out $name

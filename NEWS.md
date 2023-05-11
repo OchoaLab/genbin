@@ -39,3 +39,7 @@
 
 - Function `gcta_mlma` added option `file_covar_cat`.
 - Removed `LazyData: true` from `DESCRIPTION`
+
+# genbin 0.0.7.9000 (2023-05-11)
+
+- Added functions `plink_hardy`, `read_plink_hardy`, and `delete_files_plink_hardy` to run `plink2 --hardy`, read, and delete its output, respectively.
