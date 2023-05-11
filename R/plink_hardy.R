@@ -5,6 +5,7 @@
 #' 
 #' @param name The shared name of the input plink BED/BIM/FAM files without extensions.
 #' @param name_out The base name of the output hardy file (default same as input `name`), which gets extensions added automatically.
+#' @param midp If `TRUE`, uses mid p-value method.  Default doesn't use it.
 #' @param plink_bin The path to the binary executable.
 #' Default assumes `plink2` is in the PATH.
 #' @param threads The number of threads to use.
@@ -32,6 +33,7 @@
 plink_hardy <- function(
                         name,
                         name_out = name,
+                        midp = FALSE,
                         plink_bin = 'plink2',
                         threads = 0,
                         verbose = TRUE
@@ -48,13 +50,20 @@ plink_hardy <- function(
     # check that plink files are present
     genio::require_files_plink( name )
 
+    # pass options to hardy as needed
+    args <- c()
+    if ( midp )
+        args <- c( args, 'midp' )
+    
     # the arguments that are always used
+    # wrap the hardy-specific args
     args <- c(
         '--silent',
         '--bfile',
         name,
         '--nonfounders',
         '--hardy',
+        args,
         '--out',
         name_out,
         '--threads',

@@ -15,6 +15,7 @@
 #' - "#chrom" -> "chr"
 #' - "a1" -> "ref"
 #' - "ax" -> "alt"
+#' - "midp" -> "p" if present (in outputs with option "midp" this column replaces "p")
 #'
 #' @examples 
 #' \dontrun{
@@ -49,6 +50,9 @@ read_plink_hardy <- function( file, ext = 'hardy', verbose = TRUE ) {
     names( data )[ names( data ) == '#chrom' ] <- 'chr'
     names( data )[ names( data ) == 'a1' ] <- 'ref'
     names( data )[ names( data ) == 'ax' ] <- 'alt'
+    # this one is only present if midp option was used, otherwise the column is already called "p"
+    if ( 'midp' %in% names( data ) )
+        names( data )[ names( data ) == 'midp' ] <- 'p'
     
     # return tibble
     return( data )

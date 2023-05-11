@@ -22,6 +22,7 @@ Original names (as they appear in the header line of the file) are modified by l
 \item "#chrom" -> "chr"
 \item "a1" -> "ref"
 \item "ax" -> "alt"
+\item "midp" -> "p" if present (in outputs with option "midp" this column replaces "p")
 }
 }
 \description{

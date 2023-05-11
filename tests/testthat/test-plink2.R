@@ -42,8 +42,12 @@ test_that( 'read_plink_hardy works', {
 
     # read an existing file
     expect_silent( data <- read_plink_hardy( name, verbose = FALSE ) )
-
     # check data!
+    check_hardy_data( data )
+
+    # repeat with midp version, which has a column with a different name
+    name2 <- paste0( name, '.midp' )
+    expect_silent( data <- read_plink_hardy( name2, verbose = FALSE ) )
     check_hardy_data( data )
 })
 
@@ -177,7 +181,11 @@ if ( Sys.which( 'plink2' ) != '' ) {
         
         # a successful run
         expect_silent( data <- plink_hardy( name, name_out, verbose = FALSE ) )
-
+        # check data!
+        check_hardy_data( data )
+        
+        # a successful run, midp version
+        expect_silent( data <- plink_hardy( name, name_out, midp = TRUE, verbose = FALSE ) )
         # check data!
         check_hardy_data( data )
         

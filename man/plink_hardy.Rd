@@ -7,6 +7,7 @@
 plink_hardy(
   name,
   name_out = name,
+  midp = FALSE,
   plink_bin = "plink2",
   threads = 0,
   verbose = TRUE
@@ -16,6 +17,8 @@ plink_hardy(
 \item{name}{The shared name of the input plink BED/BIM/FAM files without extensions.}
 
 \item{name_out}{The base name of the output hardy file (default same as input \code{name}), which gets extensions added automatically.}
+
+\item{midp}{If \code{TRUE}, uses mid p-value method.  Default doesn't use it.}
 
 \item{plink_bin}{The path to the binary executable.
 Default assumes \code{plink2} is in the PATH.}

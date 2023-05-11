@@ -43,3 +43,8 @@
 # genbin 0.0.7.9000 (2023-05-11)
 
 - Added functions `plink_hardy`, `read_plink_hardy`, and `delete_files_plink_hardy` to run `plink2 --hardy`, read, and delete its output, respectively.
+
+# genbin 0.0.8.9000 (2023-05-11)
+
+- Function `plink_hardy` added `midp` option.
+- Function `read_plink_hardy` supports `midp` output, renaming final column from "midp" to "p".

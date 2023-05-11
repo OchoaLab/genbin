@@ -33,6 +33,11 @@ plink2 --bfile $name --hardy --nonfounders --out $name
 # cleanup
 rm $name.log
 
+# midp version is slightly different, need to test it too
+plink2 --bfile $name --hardy midp --nonfounders --out $name.midp
+# cleanup
+rm $name.midp.log
+
 # create GCTA outputs (grm, mlma, hsq) for parsing tests
 gcta64 --bfile $name --make-grm --out $name
 gcta64 --mlma --bfile $name --grm $name --pheno $name.phen --out $name
