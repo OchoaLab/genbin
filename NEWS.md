@@ -48,3 +48,7 @@
 
 - Function `plink_hardy` added `midp` option.
 - Function `read_plink_hardy` supports `midp` output, renaming final column from "midp" to "p".
+
+# genbin 0.0.9.9000 (2024-11-09)
+
+- Function `read_plink_glm` (and its dependency `plink_glm`) updated parser to work with latest plink2 outputs, while retaining backward compatibility to previous format.

@@ -3,7 +3,6 @@
 \docType{package}
 \name{genbin-package}
 \alias{genbin-package}
-\alias{_PACKAGE}
 \alias{genbin}
 \title{genbin: R wrappers for binaries in genetics}
 \description{
