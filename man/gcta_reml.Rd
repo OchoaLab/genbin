@@ -11,6 +11,7 @@ gcta_reml(
   name_out = name,
   gcta_bin = "gcta64",
   threads = 0,
+  m_pheno = 1,
   verbose = TRUE
 )
 }
@@ -28,6 +29,9 @@ Default assumes \code{gcta64} is in the PATH.}
 
 \item{threads}{The number of threads to use.
 The values 0 (default), NA, or NULL use all threads available (the output of \code{\link[parallel:detectCores]{parallel::detectCores()}}).}
+
+\item{m_pheno}{The index of the phenotype to analyze.
+Defaults to the first phenotype in the given phenotype table.}
 
 \item{verbose}{If \code{TRUE} (default), prints the command line before it is executed, followed by the the path of the output file being read (after autocompleting the extensions).}
 }

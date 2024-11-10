@@ -52,3 +52,4 @@
 # genbin 0.0.9.9000 (2024-11-09)
 
 - Function `read_plink_glm` (and its dependency `plink_glm`) updated parser to work with latest plink2 outputs, while retaining backward compatibility to previous format.
+- Function `gcta_reml` added option `m_pheno` that allows specifying the phenotype index in a file with multiple phenotypes.

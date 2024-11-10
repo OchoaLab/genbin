@@ -15,6 +15,8 @@
 #' Default assumes `gcta64` is in the PATH.
 #' @param threads The number of threads to use.
 #' The values 0 (default), NA, or NULL use all threads available (the output of [parallel::detectCores()]).
+#' @param m_pheno The index of the phenotype to analyze.
+#' Defaults to the first phenotype in the given phenotype table.
 #' @param verbose If `TRUE` (default), prints the command line before it is executed, followed by the the path of the output file being read (after autocompleting the extensions).
 #'
 #' @return A list containing the estimated heritability, its standard error, and the full table of estimated variance components, as a `tibble`, read with [read_gcta_hsq()] (see that for more info).
@@ -42,6 +44,7 @@ gcta_reml <- function(
                       name_out = name,
                       gcta_bin = 'gcta64',
                       threads = 0,
+                      m_pheno = 1,
                       verbose = TRUE
                       ) {
     if (missing(name))
@@ -56,7 +59,7 @@ gcta_reml <- function(
     # check that GRM and phen files are present
     genio::require_files_phen( name_phen )
     genio::require_files_grm( name_grm )
-
+    
     # the arguments that are always used
     args <- c(
         '--reml',
@@ -64,6 +67,8 @@ gcta_reml <- function(
         name_grm,
         '--pheno',
         paste0( name_phen, '.phen' ),
+        '--mpheno',
+        m_pheno,
         '--out',
         name_out,
         '--thread-num',
