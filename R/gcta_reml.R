@@ -7,17 +7,11 @@
 #'
 #' A wrapper for running GCTA variance component estimation followed by reading of the results by [read_gcta_hsq()].
 #'
+#' @inheritParams gcta_mlma
 #' @param name The shared default name of the input and output files without extensions.
-#' @param name_grm The shared name of the input binary GRM files without extensions (default same as input `name`).
-#' @param name_phen The base name of the phenotype file without PHEN extension (default same as input `name`).
 #' @param name_out The base name of the output variance component file (default same as input `name`), which gets extension ".hsq" added automatically.
-#' @param gcta_bin The path to the binary executable.
-#' Default assumes `gcta64` is in the PATH.
-#' @param threads The number of threads to use.
-#' The values 0 (default), NA, or NULL use all threads available (the output of [parallel::detectCores()]).
 #' @param m_pheno The index of the phenotype to analyze.
 #' Defaults to the first phenotype in the given phenotype table.
-#' @param verbose If `TRUE` (default), prints the command line before it is executed, followed by the the path of the output file being read (after autocompleting the extensions).
 #'
 #' @return A list containing the estimated heritability, its standard error, and the full table of estimated variance components, as a `tibble`, read with [read_gcta_hsq()] (see that for more info).
 #'
@@ -42,6 +36,8 @@ gcta_reml <- function(
                       name_grm = name,
                       name_phen = name,
                       name_out = name,
+                      file_covar = NULL,
+                      file_covar_cat = NULL,
                       gcta_bin = 'gcta64',
                       threads = 0,
                       m_pheno = 1,
@@ -75,6 +71,11 @@ gcta_reml <- function(
         threads
     )
 
+    if ( !is.null( file_covar ) )
+        args <- c( args, '--qcovar', file_covar )
+    if ( !is.null( file_covar_cat ) )
+        args <- c( args, '--covar', file_covar_cat )
+    
     # actual run
     system3( gcta_bin, args, verbose )
 

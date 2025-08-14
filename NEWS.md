@@ -53,3 +53,7 @@
 
 - Function `read_plink_glm` (and its dependency `plink_glm`) updated parser to work with latest plink2 outputs, while retaining backward compatibility to previous format.
 - Function `gcta_reml` added option `m_pheno` that allows specifying the phenotype index in a file with multiple phenotypes.
+
+# genbin 0.0.10.9000 (2025-08-13)
+
+- Function `gcta_reml` added options `file_covar` and `file_covar_cat` to provide covariates to this heritability analysis.

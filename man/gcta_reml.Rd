@@ -9,6 +9,8 @@ gcta_reml(
   name_grm = name,
   name_phen = name,
   name_out = name,
+  file_covar = NULL,
+  file_covar_cat = NULL,
   gcta_bin = "gcta64",
   threads = 0,
   m_pheno = 1,
@@ -23,6 +25,10 @@ gcta_reml(
 \item{name_phen}{The base name of the phenotype file without PHEN extension (default same as input \code{name}).}
 
 \item{name_out}{The base name of the output variance component file (default same as input \code{name}), which gets extension ".hsq" added automatically.}
+
+\item{file_covar}{Optional file path of fixed continuous covariates.}
+
+\item{file_covar_cat}{Optional file path of fixed categorical covariates.}
 
 \item{gcta_bin}{The path to the binary executable.
 Default assumes \code{gcta64} is in the PATH.}
